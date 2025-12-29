@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林乃頌 Nai-Song Lin | AI Portfolio</title>
+    <meta name="description"
+        content="Nai-Song Lin's AI Portfolio featuring SDG Tracking, RAG Systems, Object Detection, and Medical AI.">
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d4f6c;
+            --secondary: #4a90e2;
+            --accent: #ff7e5f;
+            --bg-light: #FFF5EE;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-dark: #2d3436;
+            --text-muted: #636e72;
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Animation --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(255, 126, 95, 0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .contact-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: var(--glass);
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .pill:hover {
+            transform: translateY(-3px);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(13, 79, 108, 0.2);
+        }
+
+        /* --- Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .project-content ul {
+            list-style: none;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .project-content li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .project-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #093b52;
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-line {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 0 auto 20px;
+            border-radius: 10px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Nai-Song Lin <span style="color: var(--secondary);">AI portfolio</span></h1>
+
+            <div class="contact-pills">
+                <a href="mailto:creempepper@gmail.com" class="pill">
+                    <i class="fas fa-envelope"></i> creempepper@gmail.com
+                </a>
+                <a href="https://github.com/pcreem" class="pill">
+                    <i class="fab fa-github"></i> GitHub: pcreem
+                </a>
+
+            </div>
+        </header>
+
+        <section class="projects-grid">
+
+            <!-- Project 1: SDG Tracker -->
+            <div class="project-card">
+                <div class="image-container">
+                    <img src="assets/sdg-preview.png" alt="SDG Tracker Demo">
+                </div>
+                <div class="project-content">
+                    <h3>Global SDG Tracker AI (2025)</h3>
+                    <ul>
+                        <li>建構 AI 引擎，整合 SDR2025 數據 (166國、17 SDG目標)，生成多語言互動報告。</li>
+                        <li>設計自動化數據管線，處理 5,225 行多維數據，支持趨勢與動態排名分析。</li>
+                        <li>部署互動儀表板，優化 UX (年份滑桿、深度選擇)，減少 30% 生成耗時。</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/pcreem/sdgToPic" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Simple RAG -->
+            <div class="project-card">
+                <div class="image-container">
+                    <img src="assets/rag-preview.png" alt="RAG System Demo">
+                </div>
+                <div class="project-content">
+                    <h3>個人 RAG 知識庫問答系統</h3>
+                    <ul>
+                        <li>支援多格式 (PDF/DOCX) 上傳，結合 FAISS 向量庫與 LangChain 實現精準檢索。</li>
+                        <li>整合 Azure OpenAI (GPT-4) 生成回答，透過 Prompt 控制有效降低幻覺。</li>
+                        <li>展示端到端 AI 開發，含文檔分塊、嵌入與即時聊天記錄管理。</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/pcreem/simple-rag" class="btn btn-primary"
+                            target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Bear Detector -->
+            <div class="project-card">
+                <div class="image-container">
+                    <img src="assets/bear-preview.png" alt="Bear Detector Demo">
+                </div>
+                <div class="project-content">
+                    <h3>台灣黑熊物件偵測模型</h3>
+                    <ul>
+                        <li>基於 YOLOv8 訓練 14,000 張影像，應用於臺東預警系統，減少人熊衝突。</li>
+                        <li>F1 Score 達 0.85，成功降低 70% 誤報率。</li>
+                        <li>部署 Gradio 介面，支援低光源與複雜背景下的高效率偵測。</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/pcreem/black-bear-detector" class="btn btn-primary"
+                            target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Pneumonia Detection -->
+            <div class="project-card">
+                <div class="image-container">
+                    <img src="assets/pneumonia-preview.png" alt="Pneumonia Detection Demo">
+                </div>
+                <div class="project-content">
+                    <h3>肺炎檢測 AI 輔助臨床系統</h3>
+                    <ul>
+                        <li>基於 ResNet50 遷移學習，於 Kaggle X-ray 資料集達成 87% 分類準確率。</li>
+                        <li>整合 Grad-CAM 視覺化熱圖，提升模型可解釋性，協助醫師精準定位病灶。</li>
+                        <li>開發 Gradio Web App，支援即時影像上傳及風險分級建議。</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/pcreem/pneumonia-detector" class="btn btn-primary"
+                            target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-line"></div>
+            <p>最後更新：2025/12/29 | Managed with <i class="fas fa-heart" style="color: var(--accent);"></i> by Nai-Song Lin
+            </p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
