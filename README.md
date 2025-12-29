@@ -2,9 +2,6 @@
 
 Welcome to my AI portfolio. This repository showcases my work in various AI domains, including Sustainable Development Goals (SDG) tracking, Large Language Models (RAG), Computer Vision (Object Detection), and Medical AI.
 
-## 🚀 Live Demo
-[View Live Portfolio Page](index.html) (If hosted on GitHub Pages)
-
 ## 🛠 Featured Projects
 
 ### 1. Global SDG Tracker AI (2025)
