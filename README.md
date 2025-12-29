@@ -14,19 +14,19 @@ Welcome to my AI portfolio. This repository showcases my work in various AI doma
 - **Description:** A document-based Q&A system for knowledge base management.
 - **Tech Stack:** LangChain, FAISS, OpenAI (Azure), Gradio.
 - **Highlights:** PDF/DOCX support, low hallucination, persistent chat history.
-- **Demo:** [Hugging Face Spaces](https://huggingface.co/spaces/pcreem/simple-rag)
+- **Demo:** [Hugging Face Spaces](http://huggingface.co/spaces/pcreem/simRAG)
 
 ### 3. Taiwan Black Bear Detector
 - **Description:** Real-time object detection for human-bear conflict mitigation.
 - **Tech Stack:** YOLOv8, PyTorch, Gradio.
 - **Highlights:** F1 Score 0.85, 70% reduction in false alarms.
-- **Demo:** [Hugging Face Spaces](https://huggingface.co/spaces/pcreem/black-bear-detector)
+- **Demo:** [Hugging Face Spaces](https://huggingface.co/spaces/pcreem/mulas)
 
 ### 4. Pneumonia Detection AI
 - **Description:** AI-assisted clinical diagnostic tool for pneumonia using X-rays.
 - **Tech Stack:** ResNet50, PyTorch, Grad-CAM.
 - **Highlights:** 87% accuracy, explainable AI (Heatmaps).
-- **Demo:** [Hugging Face Spaces](https://huggingface.co/spaces/pcreem/pneumonia-detector)
+- **Demo:** [Hugging Face Spaces](https://huggingface.co/spaces/pcreem/medPS)
 
 ---
 
